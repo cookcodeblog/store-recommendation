@@ -1,3 +1,9 @@
 spring:
   application:
     name: recommendation
+
+opentracing:
+  jaeger:
+    udp-sender:
+      host: localhost
+      port: 6831
