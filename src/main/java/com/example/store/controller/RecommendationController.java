@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 @RestController
 @Slf4j
 public class RecommendationController {
@@ -34,7 +36,9 @@ public class RecommendationController {
         count++;
         log.info(String.format("recommendation request from %s: %d", HOSTNAME, count));
 
-        // timeout();
+        // simulate service response slowly for Hystrix demo
+        // Or just stop this service
+//        timeout();
 
         log.debug("recommendation service ready to return");
         if (misbehave) {
@@ -47,5 +51,13 @@ public class RecommendationController {
         log.debug(String.format("Misbehaving %d", count));
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
                 .body(String.format("recommendation misbehavior from '%s'\n", HOSTNAME));
+    }
+
+    private void timeout() {
+        try {
+            Thread.sleep(new java.util.Random().nextInt(10000 - 500) + 500); // sleep [500, 10000) ms
+        } catch (InterruptedException e) {
+            log.info("Thread interrupted");
+        }
     }
 }
