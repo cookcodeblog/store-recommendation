@@ -1,0 +1,28 @@
+server:
+  port: 0 # ${random.int(5000,5100)} doesn't work in zuul ?
+
+eureka:         #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    instance-id: ${spring.application.name}:${random.int}
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+logging:
+  level:
+    com.example.store: DEBUG
+
+ribbon:
+  ReadTimeout: 5000
+
+opentracing:
+  jaeger:
+    udp-sender:
+      host: ${JAEGER_HOST:localhost}
+      port: ${JAEGER_PORT:6831}
