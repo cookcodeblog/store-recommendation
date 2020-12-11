@@ -24,5 +24,5 @@ ribbon:
 opentracing:
   jaeger:
     udp-sender:
-      host: ${JAEGER_HOST:localhost}
-      port: ${JAEGER_PORT:6831}
+      host: jaeger-agent
+      port: 6831
