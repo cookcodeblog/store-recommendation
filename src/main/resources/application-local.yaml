@@ -1,19 +1,19 @@
 server:
-  port: 0 # ${random.int(5000,5100)} doesn't work in zuul ?
+  port: 8328
 
-eureka:         #tells about the Eureka server details and its refresh time
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 2
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${random.int}
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
-    healthcheck:
-      enabled: true
-    lease:
-      duration: 5
+#eureka:         #tells about the Eureka server details and its refresh time
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 2
+#    prefer-ip-address: true
+#    instance-id: ${spring.application.name}:${random.int}
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5
 
 logging:
   level:
