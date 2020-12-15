@@ -30,6 +30,9 @@ ribbon:
 opentracing:
   jaeger:
     enable-b3-propagation: true
-    http-sender:
-      url: ${JAEGER_COLLECTOR_ENDPOINT:http://jaeger-collector.istio-system.svc:14268/api/traces}
+#    http-sender:
+#      url: ${JAEGER_COLLECTOR_ENDPOINT:http://jaeger-collector.istio-system.svc:14268/api/traces}
+    udp-sender:
+      host: ${JAEGER_AGENT_HOST:jaeger-agent.istio-system.svc}
+      port: ${JAEGER_AGENT_PORT:6831}
     service-name: recommendation
