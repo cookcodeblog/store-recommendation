@@ -12,7 +12,7 @@ import java.util.Random;
 @Slf4j
 public class RecommendationController {
 
-    private static final String RESPONSE_STRING_FORMAT = "recommendation v1 from '%s': %d\n";
+    private static final String RESPONSE_STRING_FORMAT = "recommendation v2 from '%s': %d\n";
 
     /**
      * Counter to help us see the lifecycle
