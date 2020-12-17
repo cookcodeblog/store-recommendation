@@ -29,4 +29,4 @@ opentracing:
     udp-sender:
       host: ${JAEGER_AGENT_HOST:jaeger-agent.istio-system.svc}
       port: ${JAEGER_AGENT_PORT:6831}
-    service-name: recommendation
+#    service-name: recommendation
