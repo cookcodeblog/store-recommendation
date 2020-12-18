@@ -1,10 +1,14 @@
 package com.example.store.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -30,7 +34,14 @@ public class RecommendationController {
     }
 
     @RequestMapping("/")
-    public ResponseEntity<String> getRecommendations() {
+    public ResponseEntity<String> getRecommendations(@RequestHeader HttpHeaders headers) {
+
+        // print all http headers
+        headers.forEach((key, value) -> {
+            log.info(String.format(
+                    "Header '%s' = %s", key, value.stream().collect(Collectors.joining("|"))));
+        });
+
         count++;
         log.info(String.format("recommendation request from %s: %d", HOSTNAME, count));
 
