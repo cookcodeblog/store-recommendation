@@ -63,9 +63,23 @@ public class RecommendationController {
 
     private void timeout() {
         try {
-            Thread.sleep(new java.util.Random().nextInt(10000 - 500) + 500); // sleep [500, 10000) ms
+            Thread.sleep(new java.util.Random().nextInt(3000 - 500) + 500); // sleep from 500 to 10000 ms
         } catch (InterruptedException e) {
             log.info("Thread interrupted");
         }
+    }
+
+    @RequestMapping("/misbehave")
+    public ResponseEntity<String> flagMisbehave() {
+        this.misbehave = true;
+        log.debug("'misbehave' has been set to 'true'");
+        return ResponseEntity.ok("Next request to / will return a 503\n");
+    }
+
+    @RequestMapping("/behave")
+    public ResponseEntity<String> flagBehave() {
+        this.misbehave = false;
+        log.debug("'misbehave' has been set to 'false'");
+        return ResponseEntity.ok("Next request to / will return 200\n");
     }
 }
